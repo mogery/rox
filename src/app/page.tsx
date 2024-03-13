@@ -4,7 +4,11 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center min-h-full gap-4 py-4">
       {new Array(100).fill(0).map((_, i) => (
-        <Post key={i} />
+        <Post key={i} post={{
+          user: "Jane Doe",
+          createdAt: new Date(),
+          content: "hello world! lol",
+        }} />
       ))}
     </main>
   );
