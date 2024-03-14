@@ -1,4 +1,4 @@
-import { PostType } from "@/schema";
+import { PostType, posts } from "@/../db/schema";
 import ListLinkItem from "./ListLinkItem";
 
 export default function Post({ post }: { post: PostType }) {

@@ -1,14 +1,16 @@
 import Post from "@/components/Post";
+import db from "@/db";
+import { desc } from "drizzle-orm";
+import { posts } from "../../db/schema";
 
-export default function Home() {
+export default async function Home() {
+  const fetchedPosts = await db.select().from(posts)
+    .orderBy(desc(posts.createdAt));
+
   return (
     <main className="flex flex-col items-center min-h-full gap-4 py-4">
-      {new Array(100).fill(0).map((_, i) => (
-        <Post key={i} post={{
-          user: "Jane Doe",
-          createdAt: new Date(),
-          content: "hello world! lol",
-        }} />
+      {fetchedPosts.map(post => (
+        <Post post={post} key={post.id} />
       ))}
     </main>
   );
